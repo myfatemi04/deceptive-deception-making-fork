@@ -6,7 +6,7 @@ from gurobipy import GRB
 class MDP(object):
 
     def __init__(self, MDP=None):
-        self.MDP = MDP
+        self.MDP:list = MDP # type: ignore
 
 
     def states(self):

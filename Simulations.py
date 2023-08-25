@@ -43,9 +43,10 @@ def simulate_Markovian(policy_file, config_file, time_horizon, row_number, colum
         action = policy_modified[counter][state['agents'][0]]
         print(action)
         done, state = sim.move(action) #main call
-        if counter == 0:
-            sleep(5)
-        sleep(0.5)
+        print(state)
+        # if counter == 0:
+        #     sleep(5)
+        # sleep(0.5)
         counter = counter +1
 
 def simulate_Stationary(policy_file, config_file, row_number, column_number):

@@ -43,7 +43,7 @@ def grid_world(row,column,absorb,slip):
     Num_of_actions=5
     model_s={}
     model_sa={}
-    model=[model_s,model_sa]
+    model=[model_s, model_sa]
     for s in range(Num_of_states):
         model_s.update({s:['L']})
         if s not in absorb:
@@ -58,24 +58,24 @@ def grid_world(row,column,absorb,slip):
         for a in model_s[s]:
             if slip !=0:
                 if a == 'N':
-                    model_sa.update({(s,a):([slip,1-slip],[s,s+column])})
+                    model_sa[s, a] = ([slip,1-slip],[s,s+column])
                 if a == 'W':
-                    model_sa.update({(s,a):([slip,1-slip],[s,s-1])})
+                    model_sa[s, a] = ([slip,1-slip],[s,s-1])
                 if a == 'S':
-                    model_sa.update({(s,a):([slip,1-slip],[s,s-column])})
+                    model_sa[s, a] = ([slip,1-slip],[s,s-column])
                 if a == 'E':
-                    model_sa.update({(s,a):([slip,1-slip],[s,s+1])})
+                    model_sa[s, a] = ([slip,1-slip],[s,s+1])
                 if a == 'L':
-                    model_sa.update({(s,a):([1],[s])})
+                    model_sa[s, a] = ([1],[s])
             else:
                 if a == 'N':
-                    model_sa.update({(s,a):([1],[s+column])})
+                    model_sa[s, a] = ([1],[s+column])
                 if a == 'W':
-                    model_sa.update({(s,a):([1],[s-1])})
+                    model_sa[s, a] = ([1],[s-1])
                 if a == 'S':
-                    model_sa.update({(s,a):([1],[s-column])})
+                    model_sa[s, a] = ([1],[s-column])
                 if a == 'E':
-                    model_sa.update({(s,a):([1],[s+1])})
+                    model_sa[s, a] = ([1],[s+1])
                 if a == 'L':
-                    model_sa.update({(s,a):([1],[s])})
+                    model_sa[s, a] = ([1],[s])
     return model
