@@ -53,7 +53,7 @@ model = grid_world(rows,cols,absorb,slip)
 num_of_states = len(model[0])
 
 # Define the time_horizon
-time_horizon = 180
+time_horizon = 20
 
 # Define the discount factor
 discount = 0.9
@@ -160,6 +160,6 @@ f.close()
 
 # Simulate the second policy
 policy_file = "grid_world_policy_2.csv"
-simulate_Markovian(policy_file, config_file, time_horizon, rows, cols)
+state_history = simulate_Markovian(policy_file, config_file, time_horizon, rows, cols)
 
 print("The time taken for the second policy is: ", end_time - start_time, " seconds")

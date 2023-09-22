@@ -55,7 +55,7 @@ class Graph(object):
 
     def minDistance(self, dist, sptSet):
             # Initilaize minimum distance for next node
-            min = sys.maxsize
+            min = sys.maxsize + 1
 
             # Search not nearest vertex not in the
             # shortest path tree
@@ -79,7 +79,7 @@ class Graph(object):
         dist[src] = 0
 
         for i, vertex in enumerate(self.V):
-            print(i, sum(sptSet.values()), len(sptSet), len(self.V))
+            # print(i, sum(sptSet.values()), len(sptSet), len(self.V))
 
             # Pick the minimum distance vertex from
             # the set of vertices not yet processed.

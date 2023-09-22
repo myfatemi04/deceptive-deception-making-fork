@@ -6,29 +6,26 @@ import bisect
 
 
 class Simulation:
-
-
-    grid = []
-    agent_blocks = []
-    moving_obstacles = []
-    obstacle_percentages = []
-    agent_percentages = []
-    # slip_percentages[current_x][current_y][action](x_result, y_result, prob)
-    slip_percentages = []
-    log = {"agents": [], "moving_obstacles": []}
-    WINDOW_SIZE = [0, 0]
-    HEIGHT = 0
-    WIDTH = 0
-    MARGIN = 2
-    time_step = 0
-    screen = pygame.display.set_mode((0,0))
-    clock = pygame.time.Clock()
-    pygame.display.set_caption("Environment")
-    # recognizer = speech_recognition.Recognizer()
-    matrix_active = False
-    slip_active = False
-
     def __init__(self, configFile):
+        self.grid = []
+        self.agent_blocks = []
+        self.moving_obstacles = []
+        self.obstacle_percentages = []
+        self.agent_percentages = []
+        # slip_percentages[current_x][current_y][action](x_result, y_result, prob)
+        self.slip_percentages = []
+        self.log = {"agents": [], "moving_obstacles": []}
+        self.WINDOW_SIZE = [0, 0]
+        self.HEIGHT = 0
+        self.WIDTH = 0
+        self.MARGIN = 2
+        self.time_step = 0
+        screen = pygame.display.set_mode((0,0))
+        clock = pygame.time.Clock()
+        pygame.display.set_caption("Environment")
+        # recognizer = speech_recognition.Recognizer()
+        self.matrix_active = False
+        self.slip_active = False
 
         #import config file
         configFile = open(configFile, 'r')
@@ -123,11 +120,9 @@ class Simulation:
                 self.agent_blocks[number].move_null()
 
     def draw(self):
-
         for column in range(self.WIDTH):
             for row in range(self.HEIGHT):
                 self.grid[column][row].draw(self.screen, column, row, self.MARGIN)
-
 
         for agent in self.agent_blocks:
             agent.draw(self.screen, agent.column, agent.row, self.MARGIN)
@@ -261,7 +256,7 @@ class Simulation:
                 print ("Fixed obstacle hit")
                 #return True
             if isinstance(self.grid[agent.column][agent.row], Goal_block):
-                print ("Goal block hit")
+                print ("Goal block hit:", agent.column, agent.row)
                 return True
 
         return False

@@ -1,0 +1,3 @@
+# note: typically comes pre-installed on a university computer
+gurobipy
+opencv-python

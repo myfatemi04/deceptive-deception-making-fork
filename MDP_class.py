@@ -322,6 +322,7 @@ class MDP(object):
         #m.setParam( 'OutputFlag', False )
         m2 = gp.Model("min_cost_policy_computation")
         m2.setParam( 'OutputFlag', False )
+        # contains the cost matrix for each state-action pair
         X = m.addVars(len(self.states()), len(self.actions()), lb=0.0, name='lambda')
         X2 = m2.addVars(len(self.states()), len(self.actions()), lb=0.0, name='lambda')
         pre_lambda_sum, post_lambda_sum, total_reach_prob, total_expected_cost= {} , {} , gp.LinExpr(), gp.LinExpr()
@@ -376,7 +377,7 @@ class MDP(object):
             for action in self.active_actions()[state]:
                 act_ind = self.MDP[0][state].index(action)
                 if X2[state,act_ind].x >= X2[state,opt_index].x:
-                    optimal_policy[state]=action
+                    optimal_policy[state] = action
                     opt_index = act_ind
         return min_cost_val, optimal_policy
 

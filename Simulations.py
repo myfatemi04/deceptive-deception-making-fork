@@ -11,6 +11,7 @@ import numpy as np
 # Remember to initiate a ROS node and subscribe to the topic /cmd
 
 def simulate_Markovian(policy_file, config_file, time_horizon, row_number, column_number):
+    states = []
 
     policy = {}
     print(policy_file)
@@ -35,11 +36,11 @@ def simulate_Markovian(policy_file, config_file, time_horizon, row_number, colum
             policy_modified[time_step][(column, row)] = 'west'
         elif policy[key] == 'L':
             policy_modified[time_step][(column, row)] = 'stay'
-    print(policy_modified)
     state = sim.get_state() #grab state
     done = False
     counter = 0
     while not done:
+        states.append(state)
         action = policy_modified[counter][state['agents'][0]]
         print(action)
         done, state = sim.move(action) #main call
@@ -48,6 +49,7 @@ def simulate_Markovian(policy_file, config_file, time_horizon, row_number, colum
         #     sleep(5)
         # sleep(0.5)
         counter = counter +1
+    return states
 
 def simulate_Stationary(policy_file, config_file, row_number, column_number):
 
@@ -75,11 +77,14 @@ def simulate_Stationary(policy_file, config_file, row_number, column_number):
     state = sim.get_state() #grab state
     done = False
     counter = 0
+    state_history = []
     while not done:
+        state_history.append(state)
         action = policy_modified[state['agents'][0]]
         print(action)
         done, state = sim.move(action) #main call
-        if counter == 0:
-            sleep(5)
-        sleep(0.5)
+        # if counter == 0:
+        #     sleep(5)
+        # sleep(0.5)
         counter = counter +1
+    return state_history
