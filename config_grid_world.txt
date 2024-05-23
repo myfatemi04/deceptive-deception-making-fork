@@ -1,8 +1,8 @@
 HEIGHT: 32
 WIDTH: 32
 BLOCK: agent 6 25
-BLOCK: goal 20 4
 BLOCK: goal 26 14
+BLOCK: goal 20 4
 BLOCK: obstacle 23 31
 BLOCK: obstacle 23 30
 BLOCK: obstacle 23 29

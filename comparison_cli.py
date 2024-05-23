@@ -1,5 +1,5 @@
 """
-Usage: comparison_cli --in=<in> --out=<out> --horizon=<horizon> --step_cost=<step_cost> --discount=<discount>
+Usage: comparison_cli --in=<in> --out=<out> --horizon=<horizon> --step_cost=<step_cost> --discount=<discount> --flip_goals=<flip_goals>
 """
 
 import pickle
@@ -32,6 +32,11 @@ time_horizon = int(args['--horizon'])
 row_and_column_to_flat_index = lambda row_number, column_number: (rows - 1 - row_number) * cols + column_number
 
 goals = [row_and_column_to_flat_index(row, col) for (row, col) in gridworld.goal_positions]
+
+flip_goals = int(args['--flip_goals'])
+if flip_goals:
+    goals = goals[::-1]
+
 true_goal = goals[0]
 # Find obstacle positions
 absorb = []
